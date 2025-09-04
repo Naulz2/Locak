@@ -1,0 +1,26 @@
+* {
+    background-color: #333;
+}
+.box {
+    background: orange;
+    color: white;
+    width: 50%;
+    height: 50px;
+    padding: 50px;
+    border-radius: 8px;
+    margin-left: 20px;
+    margin-bottom: 10px;
+}
+.box2 {
+    background: red;
+    color: white;
+    width: 100%;
+    height: 50px;
+    padding-top: 20px;
+}
+.box3 {
+    background: violet;
+    color: white;
+    width: 50%;
+    height: 50px;
+}

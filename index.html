@@ -1,38 +1,121 @@
 <!DOCTYPE html>
 <html lang="vi">
 <head>
-    <meta charset="UTF-8">
-    <title>Đăng nhập</title>
-    <link rel="stylesheet" href="login.css">
-    <link href="https://fonts.googleapis.com/css?family=Roboto:400,700&display=swap" rel="stylesheet">
+<meta charset="UTF-8">
+<title>Đăng nhập & Đăng ký</title>
+<style>
+body {
+  font-family: Arial;
+  background: #f0f2f5;
+}
+.container {
+  width: 300px;
+  background: white;
+  padding: 20px;
+  margin: 100px auto;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
+input, button {
+  width: 100%;
+  padding: 8px;
+  margin: 8px 0;
+}
+button {
+  background: #1877f2;
+  color: white;
+  border: none;
+  cursor: pointer;
+}
+button:hover {
+  background: #145dbf;
+}
+p {
+  text-align: center;
+  cursor: pointer;
+  color: blue;
+}
+</style>
 </head>
+
 <body>
-    <div class="login-bg">
-        <div class="login-container">
-            <div class="login-header">
-                <img src="https://img.icons8.com/fluency/96/000000/user-male-circle.png" alt="Avatar">
-                <h2>Đăng nhập tài khoản</h2>
-            </div>
-            <form>
-                <div class="input-group">
-                    <label for="username">Tên đăng nhập</label>
-                    <input type="text" id="username" name="username" required autocomplete="username">
-                </div>
-                <div class="input-group">
-                    <label for="password">Mật khẩu</label>
-                    <input type="password" id="password" name="password" required autocomplete="current-password">
-                </div>
-                <div class="options">
-                    <label>
-                        <input type="checkbox" name="remember">
-                        Ghi nhớ đăng nhập
-                    </label>
-                    <a href="#" class="forgot">Quên mật khẩu?</a>
-                </div>
-                <button type="submit">Đăng nhập</button>
-                <p class="register">Chưa có tài khoản? <a href="#">Đăng ký</a></p>
-            </form>
-        </div>
-    </div>
+
+<div class="container" id="loginBox">
+  <h2>Đăng nhập</h2>
+  <input id="loginUser" placeholder="Tên đăng nhập">
+  <input id="loginPass" type="password" placeholder="Mật khẩu">
+  <button onclick="login()">Đăng nhập</button>
+  <p onclick="showRegister()">Chưa có tài khoản?</p>
+</div>
+
+<div class="container" id="registerBox" style="display:none;">
+  <h2>Đăng ký</h2>
+  <input id="regUser" placeholder="Tên đăng nhập">
+  <input id="regPass" type="password" placeholder="Mật khẩu">
+  <button onclick="register()">Đăng ký</button>
+  <p onclick="showLogin()">Quay lại đăng nhập</p>
+</div>
+
+<script>
+function getUsers() {
+  return JSON.parse(localStorage.getItem("users")) || [];
+}
+
+function saveUsers(users) {
+  localStorage.setItem("users", JSON.stringify(users));
+}
+localStorage.removeItem("users");
+id=""
+function register() {
+  let user = regUser.value.trim();
+  let pass = regPass.value.trim();
+
+  if (!user || !pass) {
+    alert("Vui lòng nhập đủ thông tin");
+    return;
+  }
+
+  let users = getUsers();
+
+  if (users.find(u => u.username === user)) {
+    alert("Tài khoản đã tồn tại");
+    return;
+  }
+
+  users.push({
+    username: user,
+    password: pass
+  });
+
+  saveUsers(users);
+  alert("Đăng ký thành công!");
+  showLogin();
+}
+
+function login() {
+  let user = loginUser.value.trim();
+  let pass = loginPass.value.trim();
+
+  let users = getUsers();
+  let found = users.find(u => u.username === user && u.password === pass);
+
+  if (found) {
+    alert("Đăng nhập thành công!");
+  } else {
+    alert("Sai tài khoản hoặc mật khẩu");
+  }
+}
+
+function showRegister() {
+  loginBox.style.display = "none";
+  registerBox.style.display = "block";
+}
+
+function showLogin() {
+  registerBox.style.display = "none";
+  loginBox.style.display = "block";
+}
+</script>
+
 </body>
 </html>

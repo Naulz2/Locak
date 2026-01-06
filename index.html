@@ -1,122 +1,110 @@
 <!DOCTYPE html>
 <html lang="vi">
 <head>
-<meta charset="UTF-8">
-<title>Đăng nhập & Đăng ký</title>
-<style>
-body {
-  font-family: Arial;
-  background: #f0f2f5;
-}
-.container {
-  width: 300px;
-  background: white;
-  padding: 20px;
-  margin: 100px auto;
-  border-radius: 8px;
-  box-shadow: 0 0 10px rgba(0,0,0,0.1);
-}
-input, button {
-  width: 100%;
-  padding: 8px;
-  margin: 8px 0;
-}
-button {
-  background: #1877f2;
-  color: white;
-  border: none;
-  cursor: pointer;
-}
-button:hover {
-  background: #145dbf;
-}
-p {
-  text-align: center;
-  cursor: pointer;
-  color: blue;
-}
-</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Code Web</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css">
+    <link rel="stylesheet" href="./assets/css/base.css">
+    <link rel="stylesheet" href="./assets/css/style.css">
+    <link rel="stylesheet" href="./assets/css/main.js">
 </head>
 
 <body>
+    <div class="app">
+        <header class="header">
+            <div class="grid">
+                <nav class="header__navbar">
+                    <ul class="header__navbar-list">
+                        <li class="header__navbar-item"><img src="./assets/img/metube-high-resolution-logo.png" alt="logo"></li>
+                    </ul>
+                    <ul class="header__navbar-list">
+                        <li class="header__navbar-item header__navbar-item--separate">Zalo Admin
+                        </li>
+                        <li class="header__navbar-item">
+                        <a href="" class="header__navbar-item-link">Thông báo</a>
+                        </li>
+                        <li class="header__navbar-item">
+                        <a href="Auth-2.html" class="header__navbar-item-link">Đăng nhập</a></li>
+                        <li class="header__navbar-item header__navbar-item--strong">🌙</li>
+                    </ul>
+                </nav>
+            </div>
 
-<div class="container" id="loginBox">
-  <h2>Đăng nhập</h2>
-  <input id="loginUser" placeholder="Tên đăng nhập">
-  <input id="loginPass" type="password" placeholder="Mật khẩu">
-  <button onclick="login()">Đăng nhập</button>
-  <p onclick="showRegister()">Chưa có tài khoản?</p>
-</div>
 
-<div class="container" id="registerBox" style="display:none;">
-  <h2>Đăng ký</h2>
-  <input id="regUser" placeholder="Tên đăng nhập">
-  <input id="regPass" type="password" placeholder="Mật khẩu">
-  <button onclick="register()">Đăng ký</button>
-  <p onclick="showLogin()">Quay lại đăng nhập</p>
-</div>
-
-<script>
-function getUsers() {
-  return JSON.parse(localStorage.getItem("users")) || [];
-}
-
-function saveUsers(users) {
-  localStorage.setItem("users", JSON.stringify(users));
-}
-localStorage.removeItem("users");
-id=""
-function register() {
-  let user = regUser.value.trim();
-  let pass = regPass.value.trim();
-
-  if (!user || !pass) {
-    alert("Vui lòng nhập đủ thông tin");
-    return;
-  }
-
-  let users = getUsers();
-
-  if (users.find(u => u.username === user)) {
-    alert("Tài khoản đã tồn tại");
-    return;
-  }
-
-  users.push({
-    username: user,
-    password: pass
-  });
-
-  saveUsers(users);
-  alert("Đăng ký thành công!");
-  showLogin();
-}
-
-function login() {
-  let user = loginUser.value.trim();
-  let pass = loginPass.value.trim();
-
-  let users = getUsers();
-  let found = users.find(u => u.username === user && u.password === pass);
-
-  if (found) {
-    alert("Đăng nhập thành công!");
-    window.location.href ="https://naulz2.github.io/My-Website";
-  } else {
-    alert("Sai tài khoản hoặc mật khẩu");
-  }
-}
-
-function showRegister() {
-  loginBox.style.display = "none";
-  registerBox.style.display = "block";
-}
-
-function showLogin() {
-  registerBox.style.display = "none";
-  loginBox.style.display = "block";
-}
-</script>
-
+        </header>
+        <div class="container">
+            <div class="date-time">
+    <div class="time" id="time">00:00:00</div>
+    <div class="date" id="date">01/01/1970</div>
+            </div>
+        </div>
+        <footer class="footer">
+            
+        </footer>
+    </div>
+    <!--
+        <header class="header">
+            <div class="logo">
+                <img src="Images/metube-High-logo.png" alt="Logo" />
+                <h1>Metube</h1>
+            </div>
+    <a href="Auth/Auth.html">Đăng nhập</a>
+    <button id="themeToggle">🌙</button>
+    <form class="search-bar">
+    <input type="text" placeholder="Search Metube..." />
+    <button type="submit">🔍</button>
+  </form>
+      
+    </header> -->
+<!--
+  <div>
+    <div class="time" id="time">00:00:00</div>
+    <div class="date" id="date">01/01/1970
+    </div>
+  </div>
+    <script src="Main/script.js"></script> 
+  <div class="game">
+      <a href="Game/index.html">GAME Vòng tròn nhanh tay</a>
+  </div>
+  <div class="result">
+    <img src="Images/wuthering-waves-uw6vy.jpg" alt="Wuthering Waves" class="avatar">
+    <div class="info">
+      <a href="https://wutheringwaves.kurogames.com" class="title">Wuthering Waves</a>
+      <div class="url">https://wutheringwaves.kurogames.com</div>
+      <div class="description">
+          Wuthering Waves is a story-rich open-world action RPG with a high degree of freedom. 
+        You wake from your slumber as Rover, joined by a vibrant cast of characters, 
+        embarking on an adventure in a vast and breathtaking world.
+      </div>
+    </div>
+  </div>
+  <div class="video-wrapper">
+    <iframe
+      src="https://www.youtube.com/embed/njoeOV7sG1I"
+      title="YouTube video player"
+      frameborder="0"
+      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+      allowfullscreen>
+    </iframe>
+  </div>
+    <img src="Images/Tom_and_Jerry.jpg" alt="Ảnh Tom and Jerry">
+  <video controls autoplay muted loop>
+    <source src="Video/Tom_and_Jerry.mp4" type="video/mp4">
+    Trình duyệt của bạn không hỗ trợ video.
+  </video>
+  <img src="Images/condog_phanxet.jpg" alt="">
+  <h3>Muốn biết gì sao có ảnh này thì xem bên dưới</h3>
+  <img src="Images/Screenshot_Tailoc.png" alt="">
+  <p>Tổ trưởng tổ 3 ấm dâu tổ trưởng tổ 1</p>    
+  <div class="game">
+      <a href="about.html">Mini Game</a>
+  </div>
+  <img src="Images/Dragon-Raja.png" alt="">
+  <a href="video.html">
+      <img src="" alt="">
+  </a>
+-->
 </body>
+
 </html>
